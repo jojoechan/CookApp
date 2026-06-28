@@ -1,4 +1,3 @@
-import 'package:cook_app/app/data/home_drawer.dart';
 import 'package:cook_app/app/data/loading_view.dart';
 import 'package:cook_app/app/data/recipe_tile.dart';
 import 'package:cook_app/app/data/recipe_tile_data.dart';
