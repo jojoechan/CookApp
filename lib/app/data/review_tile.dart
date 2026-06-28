@@ -1,19 +1,13 @@
 import 'package:cook_app/app/data/image_network.dart';
 import 'package:cook_app/app/data/review_tile_data.dart';
 import 'package:cook_app/app/data/utils.dart';
-import 'package:cook_app/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
 
 class ReviewTile {
-
-  static Widget build(ReviewTileData review){
+  static Widget build(ReviewTileData review) {
     return Container(
-      margin: const EdgeInsets.symmetric(
-        horizontal: 16,
-        vertical: 8
-      ),
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -23,20 +17,17 @@ class ReviewTile {
             height: 80,
             margin: EdgeInsets.only(right: Utils.defaultAppMargin.toDouble()),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(
-                Radius.circular(Utils.defaultBorderRadius.toDouble()),
-              )
-            ),
-            child: CustomImageNetwork.build(
-              review.userImage, 
-              equalSize: false,
-              customBorderRadius: BorderRadius.all(
-                Radius.circular(Utils.defaultBorderRadius.toDouble()),
-              ),
-              fontSize: Utils.smallFontSize.toDouble()
-            ),
+                borderRadius: BorderRadius.all(
+              Radius.circular(Utils.defaultBorderRadius.toDouble()),
+            )),
+            child: CustomImageNetwork.build(review.userImage,
+                equalSize: false,
+                customBorderRadius: BorderRadius.all(
+                  Radius.circular(Utils.defaultBorderRadius.toDouble()),
+                ),
+                fontSize: Utils.smallFontSize.toDouble()),
           ),
-      
+
           Expanded(
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -52,31 +43,33 @@ class ReviewTile {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           // Reviewer's Name
-                          Text(review.user, style: TextStyle(color: Utils.mainTextColor)),
-                            
+                          Text(review.user,
+                              style: TextStyle(color: Utils.mainTextColor)),
+
                           // Review's Date
-                          Text(review.date, style: TextStyle(color: Utils.mainTextColor)),
+                          Text(review.date,
+                              style: TextStyle(color: Utils.mainTextColor)),
                         ],
                       ),
                     ),
-      
+
                     //Rating
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
-                        Icon(Icons.star_rate_rounded, size: 30, color: Utils.ratingColor),
+                        Icon(Icons.star_rate_rounded,
+                            size: 30, color: Utils.ratingColor),
                         Container(
-                          margin: EdgeInsets.only(bottom: 0),
-                          child: Text(review.rating.toString(), style: TextStyle(
-                            color: Utils.mainTextColor)
-                          )
-                        ) 
+                            margin: EdgeInsets.only(bottom: 0),
+                            child: Text(review.rating.toString(),
+                                style: TextStyle(color: Utils.mainTextColor)))
                       ],
                     ),
                   ],
                 ),
                 // Review
-                Text(review.review, style: TextStyle(color: Utils.mainTextColor))
+                Text(review.review,
+                    style: TextStyle(color: Utils.mainTextColor))
               ],
             ),
           ),
@@ -85,14 +78,11 @@ class ReviewTile {
     );
   }
 
-  static Widget shimmer(){
+  static Widget shimmer() {
     return AspectRatio(
       aspectRatio: 2,
       child: Container(
-        margin: EdgeInsets.symmetric(
-          horizontal: 16,
-          vertical: 8
-        ),
+        margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         width: double.infinity,
         alignment: Alignment.centerRight,
         child: Shimmer.fromColors(
@@ -106,10 +96,9 @@ class ReviewTile {
                     width: 100,
                     height: 100,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(Utils.defaultBorderRadius.toDouble()),
-                      )
-                    ),
+                        borderRadius: BorderRadius.all(
+                      Radius.circular(Utils.defaultBorderRadius.toDouble()),
+                    )),
                   ),
                   Expanded(
                     child: Column(
@@ -137,7 +126,7 @@ class ReviewTile {
                   ),
                 ],
               ),
-          
+
               // Review
               SizedBox(
                 width: double.infinity,
@@ -145,7 +134,6 @@ class ReviewTile {
               ),
             ],
           ),
-        
         ),
       ),
     );

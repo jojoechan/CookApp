@@ -1,5 +1,4 @@
 import 'package:cook_app/app/data/utils.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../modules/country/bindings/country_binding.dart';
@@ -50,12 +49,11 @@ class AppPages {
       binding: RecipesListBinding(),
     ),
     GetPage(
-      name: _Paths.RECIPE,
-      page: () => const RecipeView(),
-      binding: RecipeBinding(),
-      transition: Transition.rightToLeft,
-      curve: Utils.pageRouteCurves
-    ),
+        name: _Paths.RECIPE,
+        page: () => const RecipeView(),
+        binding: RecipeBinding(),
+        transition: Transition.rightToLeft,
+        curve: Utils.pageRouteCurves),
     GetPage(
       name: _Paths.VIDEO,
       page: () => const VideoView(),

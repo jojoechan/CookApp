@@ -1,5 +1,4 @@
 import 'package:cook_app/app/data/image_network.dart';
-import 'package:cook_app/app/data/loading_view.dart';
 import 'package:cook_app/app/data/review_tile.dart';
 import 'package:cook_app/app/data/utils.dart';
 import 'package:cook_app/app/routes/app_pages.dart';

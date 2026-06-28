@@ -26,21 +26,21 @@ class HomeView extends GetView<HomeController> {
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("C",
+                  Text(
+                    "C",
                     style: TextStyle(
-                      fontSize: Utils.appBarFontSize.toDouble() * 2,
-                      fontFamily: 'Heavitas',
-                      fontWeight: FontWeight.bold,
-                      color: Utils.mainColor
-                    ),
+                        fontSize: Utils.appBarFontSize.toDouble() * 2,
+                        fontFamily: 'Heavitas',
+                        fontWeight: FontWeight.bold,
+                        color: Utils.mainColor),
                   ),
-                  Text("ook APP",
+                  Text(
+                    "ook APP",
                     style: TextStyle(
-                      fontSize: Utils.appBarFontSize.toDouble(),
-                      fontFamily: 'Heavitas',
-                      fontWeight: FontWeight.bold,
-                      color: Utils.mainColor
-                    ),
+                        fontSize: Utils.appBarFontSize.toDouble(),
+                        fontFamily: 'Heavitas',
+                        fontWeight: FontWeight.bold,
+                        color: Utils.mainColor),
                   ),
                 ],
               ),
@@ -48,13 +48,11 @@ class HomeView extends GetView<HomeController> {
             Align(
               alignment: Alignment.centerRight,
               child: Container(
-                padding: EdgeInsets.all(5),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(50),
-                  border: Border.all(color: Utils.mainColor, width: 2)
-                ),
-                child: Icon(Icons.search_outlined, color: Utils.mainColor)
-              ),
+                  padding: EdgeInsets.all(5),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(50),
+                      border: Border.all(color: Utils.mainColor, width: 2)),
+                  child: Icon(Icons.search_outlined, color: Utils.mainColor)),
             )
           ],
         ),
@@ -62,8 +60,8 @@ class HomeView extends GetView<HomeController> {
       // drawer: HomeDrawer.build(),
       backgroundColor: Utils.mainBgColor,
       body: SafeArea(
-        child: Obx(() =>
-          LoadingView.build(
+        child: Obx(
+          () => LoadingView.build(
             isLoading: controller.isLoadingAll.value,
             isShowContentOnLoading: false,
             child: Stack(
@@ -80,13 +78,17 @@ class HomeView extends GetView<HomeController> {
                       SliverToBoxAdapter(
                         child: Container(
                           padding: EdgeInsets.all(16),
-                          // color: Colors.grey[200], 
-                          child: Text('Explore',
-                            style: TextStyle(fontSize: 20, color: Utils.mainTextColor, fontFamily: "Heavitas"),
+                          // color: Colors.grey[200],
+                          child: Text(
+                            'Explore',
+                            style: TextStyle(
+                                fontSize: 20,
+                                color: Utils.mainTextColor,
+                                fontFamily: "Heavitas"),
                           ),
                         ),
                       ),
-                          
+
                       // Desc : Explore recipes
                       Obx(() {
                         return SliverList(
@@ -94,77 +96,112 @@ class HomeView extends GetView<HomeController> {
                             (context, index) {
                               // Desc : Show shimmer effect when loading
                               if (index == controller.exploreItems.length) {
-                          
                                 return controller.isLoading.value
                                     // Desc : Check if shimmer is on refresh, give 10 items; but if its on load only give 1 shimmer
                                     ? Column(
-                                        children: List.generate(controller.exploreIsRefreshing.value ? 10 : 1, (index) {
+                                        children: List.generate(
+                                            controller.exploreIsRefreshing.value
+                                                ? 10
+                                                : 1, (index) {
                                           return RecipeTile.shimmer();
                                         }),
                                       )
                                     : SizedBox();
                               }
-                          
+
                               // Desc : Call the build function of the tile item and check selection state
                               // bool isSelected = controller.exploreSelectedIndex.value == index;
-                              return RecipeTile.build(controller.exploreItems[index], (controller.exploreItems[index] as RecipeTileData).isChoosed
-                              , (){
-                                bool openRecipe = !(controller.exploreItems[index] as RecipeTileData).isChoosed;
-                                (controller.exploreItems[index] as RecipeTileData).isChoosed = false;
-                                (controller.exploreItems[controller.exploreSelectedIndex.value ?? 0] as RecipeTileData).isChoosed = false;
+                              return RecipeTile.build(
+                                  controller.exploreItems[index],
+                                  (controller.exploreItems[index]
+                                          as RecipeTileData)
+                                      .isChoosed, () {
+                                bool openRecipe = !(controller
+                                        .exploreItems[index] as RecipeTileData)
+                                    .isChoosed;
+                                (controller.exploreItems[index]
+                                        as RecipeTileData)
+                                    .isChoosed = false;
+                                (controller.exploreItems[
+                                        controller.exploreSelectedIndex.value ??
+                                            0] as RecipeTileData)
+                                    .isChoosed = false;
                                 controller.exploreSelectedIndex.value = null;
                                 controller.exploreItems.refresh();
-                                if(openRecipe) {
-                                  Get.toNamed(Routes.RECIPE, arguments: controller.exploreItems[index]);
+                                if (openRecipe) {
+                                  Get.toNamed(Routes.RECIPE,
+                                      arguments:
+                                          controller.exploreItems[index]);
                                 }
-                              }, (){
-                                if(!(controller.exploreItems[index] as RecipeTileData).isChoosed) {
-                                  (controller.exploreItems[controller.exploreSelectedIndex.value ?? 0] as RecipeTileData).isChoosed = false;
-                                  if(controller.exploreSelectedIndex.value != index) {
-                                    (controller.exploreItems[index] as RecipeTileData).isChoosed = true;
-                                    controller.exploreSelectedIndex.value = index;
+                              }, () {
+                                if (!(controller.exploreItems[index]
+                                        as RecipeTileData)
+                                    .isChoosed) {
+                                  (controller.exploreItems[controller
+                                              .exploreSelectedIndex.value ??
+                                          0] as RecipeTileData)
+                                      .isChoosed = false;
+                                  if (controller.exploreSelectedIndex.value !=
+                                      index) {
+                                    (controller.exploreItems[index]
+                                            as RecipeTileData)
+                                        .isChoosed = true;
+                                    controller.exploreSelectedIndex.value =
+                                        index;
                                   } else {
-                                    controller.exploreSelectedIndex.value = null;
+                                    controller.exploreSelectedIndex.value =
+                                        null;
                                   }
                                 } else {
-                                    (controller.exploreItems[controller.exploreSelectedIndex.value ?? 0] as RecipeTileData).isChoosed = false;
-                                    controller.exploreSelectedIndex.value = null;
+                                  (controller.exploreItems[controller
+                                              .exploreSelectedIndex.value ??
+                                          0] as RecipeTileData)
+                                      .isChoosed = false;
+                                  controller.exploreSelectedIndex.value = null;
                                 }
                                 controller.exploreItems.refresh();
                               });
                             },
-                            childCount: controller.exploreItems.length + 1, // Add 1 for loading indicator
+                            childCount: controller.exploreItems.length +
+                                1, // Add 1 for loading indicator
                           ),
                         );
                       }),
                     ],
                   ),
                 ),
-                
+
                 // Desc : Bottom Navigation
                 Align(
                   alignment: Alignment.bottomCenter,
                   child: Container(
                     padding: EdgeInsets.symmetric(vertical: 5),
                     decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [
-                          Colors.transparent,
-                          Utils.mainBgColor
-                        ],
-                        stops: [0, 0.5]                          
-                      )
-                    ),
+                        gradient: LinearGradient(
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
+                            colors: [Colors.transparent, Utils.mainBgColor],
+                            stops: [0, 0.5])),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
-                        NavigationItem(Icon(Icons.directions_walk_outlined, color: Utils.mainColor), false),
-                        NavigationItem(Icon(Icons.location_on_outlined, color: Utils.mainColor), false),
-                        NavigationItem(Icon(Icons.home, color: Utils.mainColor), true),
-                        NavigationItem(Icon(Icons.import_contacts_rounded, color: Utils.mainColor), false),
-                        NavigationItem(Icon(Icons.settings, color: Utils.mainColor), false),
+                        navigationItem(
+                            Icon(Icons.directions_walk_outlined,
+                                color: Utils.mainColor),
+                            false),
+                        navigationItem(
+                            Icon(Icons.location_on_outlined,
+                                color: Utils.mainColor),
+                            false),
+                        navigationItem(
+                            Icon(Icons.home, color: Utils.mainColor), true),
+                        navigationItem(
+                            Icon(Icons.import_contacts_rounded,
+                                color: Utils.mainColor),
+                            false),
+                        navigationItem(
+                            Icon(Icons.settings, color: Utils.mainColor),
+                            false),
                       ],
                     ),
                   ),
@@ -177,22 +214,21 @@ class HomeView extends GetView<HomeController> {
     );
   }
 
-  Widget NavigationItem(Icon icon, bool isSelected){
+  Widget navigationItem(Icon icon, bool isSelected) {
     return Expanded(
       child: Container(
-        padding: EdgeInsets.all(13),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            icon,
-            Container(
-              margin: EdgeInsets.only(top: 3),
-              height: 2,
-              color: isSelected ? Utils.mainColor : Colors.transparent,
-            )
-          ],
-        )
-      ),
+          padding: EdgeInsets.all(13),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              icon,
+              Container(
+                margin: EdgeInsets.only(top: 3),
+                height: 2,
+                color: isSelected ? Utils.mainColor : Colors.transparent,
+              )
+            ],
+          )),
     );
   }
 }

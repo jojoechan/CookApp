@@ -24,7 +24,7 @@ class RecipeController extends GetxController {
     super.onReady();
     var recipeId = (Get.arguments as RecipeTileData).id;
     getRecipeData(recipeId);
-    reviews.value.addAll([
+    reviews.addAll([
       ReviewTileData(
           id: "0",
           user: "Test",
