@@ -21,42 +21,40 @@ class SplashView extends GetView<SplashController> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Obx(() =>
-                  AnimatedContainer(
-                    duration: Utils.textPopUpDuration,
-                    width: 200,
-                    height: 200,
-                    margin: EdgeInsets.only(bottom: controller.marginAppFontSize.value.toDouble()),
-                    child: Lottie.asset('assets/Splash.json', repeat: false)
-                  ),
+                Obx(
+                  () => AnimatedContainer(
+                      duration: Utils.textPopUpDuration,
+                      width: 200,
+                      height: 200,
+                      margin: EdgeInsets.only(
+                          bottom:
+                              controller.marginAppFontSize.value.toDouble()),
+                      child: Lottie.asset('assets/Splash.json', repeat: false)),
                 ),
                 Row(
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Obx(() =>
-                      AnimatedDefaultTextStyle(
-                        duration: Utils.textPopUpDuration,
-                        style: TextStyle(
-                          fontSize: controller.frontAppFontSize.value.toDouble(),
-                          fontFamily: 'Heavitas',
-                          fontWeight: FontWeight.bold,
-                          color: Utils.mainColor
-                        ),
-                        child: const Text("C"),
-                      )
-                    ),
-                    Obx(() =>
-                      AnimatedDefaultTextStyle(
-                        duration: Utils.textPopUpDuration,
-                        style: TextStyle(
-                          fontSize: controller.appFontSize.value.toDouble(),
-                          fontFamily: 'Heavitas',
-                          color: Utils.mainColor
-                        ),
-                        child: const Text("ook APP"),
-                      )
-                    ),
+                    Obx(() => AnimatedDefaultTextStyle(
+                          duration: Utils.textPopUpDuration,
+                          style: TextStyle(
+                              fontSize:
+                                  controller.frontAppFontSize.value.toDouble() *
+                                      3,
+                              fontFamily: 'Heavitas',
+                              fontWeight: FontWeight.bold,
+                              color: Utils.mainColor),
+                          child: const Text("C"),
+                        )),
+                    Obx(() => AnimatedDefaultTextStyle(
+                          duration: Utils.textPopUpDuration,
+                          style: TextStyle(
+                              fontSize:
+                                  controller.appFontSize.value.toDouble() * 3,
+                              fontFamily: 'Heavitas',
+                              color: Utils.mainColor),
+                          child: const Text("ook APP"),
+                        )),
                   ],
                 ),
               ],
